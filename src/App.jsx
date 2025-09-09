@@ -60,6 +60,10 @@ export const App = () => {
     setSortButton(null);
   };
 
+  const areArraysEqual = (arr1, arr2) => {
+    return arr1.length === arr2.length && arr1.every((v, i) => v === arr2[i]);
+  };
+
   return (
     <div className="section content">
       <div className="buttons">
@@ -93,7 +97,7 @@ export const App = () => {
           Reverse
         </button>
 
-        {(isSorted || isReversed) && (
+        {(!areArraysEqual(sortedGoods, goodsFromServer) || isSorted) && (
           <button
             onClick={resetList}
             type="button"
